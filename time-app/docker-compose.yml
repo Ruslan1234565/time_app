@@ -1,0 +1,9 @@
+  adminer:
+    image: adminer
+    ports:
+      - "8081:8080"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == node4
+      replicas: 1 
