@@ -43,7 +43,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.hostname == <node4_hostname>
+          - node.hostname == node4
 
 volumes:
   mysql_data: 
