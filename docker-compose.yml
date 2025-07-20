@@ -16,10 +16,10 @@ services:
     ports:
       - "8080:8080"
     deploy:
-      replicas: 1
+      replicas: 2
       placement:
         constraints:
-          - node.role == worker
+           - node.role != manager
 
   mysql:
     image: mysql:8
@@ -29,10 +29,10 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     deploy:
-      replicas: 1
+      replicas: 4
       placement:
-        constraints:
-          - node.role == worker
+          constraints: []
+
     ports:
       - "3306:3306"
 
@@ -44,7 +44,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.hostname == worker
+          - node.hostname == node4
 
 volumes:
   mysql_data: 
