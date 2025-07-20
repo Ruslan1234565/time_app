@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   frontend:
-    image: gutsy4heart/time-app-frontend:latest
+    image: ruslan453/time-app-frontend:latest
     ports:
       - "80:80"
     deploy:
@@ -12,7 +12,7 @@ services:
       replicas: 1
 
   api:
-    image: gutsy4heart/time-app-api:latest
+    image: ruslan453/time-app-api:latest
     ports:
       - "8080:8080"
     deploy:
