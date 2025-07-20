@@ -1,9 +1,47 @@
+version: "3.8"
+
+services:
+  frontend:
+    image: gutsy4heart/time-app-frontend:latest
+    ports:
+      - "80:80"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == node1
+      replicas: 1
+
+  api:
+    image: gutsy4heart/time-app-api:latest
+    ports:
+      - "8080:8080"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == node2
+      replicas: 1
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: timeapp
+    volumes:
+      - mysql_data:/var/lib/mysql
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == node3
+      replicas: 1
+    ports:
+      - "3306:3306"
+
   adminer:
     image: adminer
     ports:
       - "8081:8080"
     deploy:
-      replicas: 1
       placement:
         constraints:
-          - node.hostname == node4 
+          - node.hostname == node4
+      replicas: 1 
